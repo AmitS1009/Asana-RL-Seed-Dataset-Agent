@@ -15,7 +15,7 @@ This project is designed for:
 - **Measurable quality**: automated sanity checks produce `output/sanity_report.json`.
 - **Optional LLM enrichment**: task titles/descriptions can be refined using Groq, but the repo runs fully offline.
 
-## Dataset at a glance (current default run)
+## Dataset at a glance 
 
 From the latest `output/sanity_report.json`:
 
@@ -70,14 +70,6 @@ python src/main.py
 python src/sanity_check.py
 ```
 
-## What’s included (recruiter-friendly)
-
-- **Schema**: `schema.sql`
-- **ER diagram source** (import into dbdiagram.io): `schema.dbml`
-- **Generator code**: `src/` (modular generators + utilities)
-- **Methodology write-up** (rubric-ready, column-by-column): `docs/DOCUMENTATION.md`
-- **Prompt templates** (optional LLM enrichment): `prompts/`
-- **Validation artifact**: `output/sanity_report.json`
 
 ## Optional: LLM-enriched task text (Groq)
 
@@ -86,10 +78,6 @@ Set in `.env`:
 - `USE_LLM_TEXT=1`
 - `GROQ_API_KEY=...`
 
-Notes:
-
-- Groq calls use the **OpenAI-compatible REST endpoint** (no SDK dependency).
-- Generation is rate-limited via `GROQ_MAX_CALLS`.
 
 ## Configuration knobs
 
@@ -104,7 +92,7 @@ All configuration is via `.env` (see `.env.example`):
 ## Explore the DB (examples)
 
 ```sql
--- Workload by assignee
+-- Workload
 SELECT assignee_user_id, COUNT(*) AS tasks
 FROM tasks
 GROUP BY 1
