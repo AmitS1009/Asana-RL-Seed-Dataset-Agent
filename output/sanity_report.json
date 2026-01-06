@@ -1,0 +1,95 @@
+{
+  "counts": {
+    "organizations": 1,
+    "teams": 80,
+    "users": 7000,
+    "team_memberships": 8226,
+    "projects": 240,
+    "sections": 1331,
+    "tasks": 52734,
+    "subtasks": 40532,
+    "comments": 34199,
+    "tags": 36,
+    "task_tags": 56270,
+    "custom_field_definitions": 10,
+    "project_custom_fields": 862,
+    "custom_field_values": 142761,
+    "attachments": 4329
+  },
+  "checks": [
+    {
+      "name": "tasks_have_valid_sections",
+      "ok": true,
+      "details": {
+        "invalid_task_section_rows": 0
+      }
+    },
+    {
+      "name": "subtasks_have_valid_parent",
+      "ok": true,
+      "details": {
+        "invalid_subtask_parent_rows": 0
+      }
+    },
+    {
+      "name": "task_completed_fields_consistent",
+      "ok": true,
+      "details": {
+        "mismatch_rows": 0
+      }
+    },
+    {
+      "name": "unassigned_rate_reasonable",
+      "ok": true,
+      "details": {
+        "unassigned": 7897,
+        "total_tasks": 52734,
+        "unassigned_pct": 0.14975158341866726
+      }
+    },
+    {
+      "name": "no_due_date_rate_reasonable",
+      "ok": true,
+      "details": {
+        "no_due": 5155,
+        "total_tasks": 52734,
+        "no_due_pct": 0.09775476921909963
+      }
+    },
+    {
+      "name": "overdue_open_tasks_exist",
+      "ok": true,
+      "details": {
+        "overdue_open": 7313,
+        "overdue_open_pct": 0.1386771342966587
+      }
+    },
+    {
+      "name": "custom_fields_present",
+      "ok": true,
+      "details": {
+        "custom_field_values": 142761,
+        "tasks": 52734,
+        "cfv_per_task": 2.707190806690181
+      }
+    },
+    {
+      "name": "comments_density_reasonable",
+      "ok": true,
+      "details": {
+        "comments": 34199,
+        "tasks": 52734,
+        "comments_per_task": 0.6485189820609095
+      }
+    },
+    {
+      "name": "attachments_density_reasonable",
+      "ok": true,
+      "details": {
+        "attachments": 4329,
+        "tasks": 52734,
+        "attachments_per_task": 0.0820912504266697
+      }
+    }
+  ]
+}

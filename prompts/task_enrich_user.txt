@@ -1,0 +1,11 @@
+Project: {{project_name}}
+Project type: {{project_type}}
+Section: {{section_name}}
+Base task title: {{base_title}}
+
+Return JSON with keys: title, description.
+Constraints:
+- Title: 4-12 words, no trailing period
+- Description: either empty, 1-3 sentences, or short bullets
+- Avoid generic placeholders like 'Task 1'
+- Prefer real enterprise language: dependencies, rollout, stakeholders, staging, approvals

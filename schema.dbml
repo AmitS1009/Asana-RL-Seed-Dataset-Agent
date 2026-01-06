@@ -1,0 +1,165 @@
+Table organizations {
+  organization_id text [pk]
+  name text
+  domain text
+  created_at text
+}
+
+Table teams {
+  team_id text [pk]
+  organization_id text [ref: > organizations.organization_id]
+  name text
+  team_type text
+  created_at text
+}
+
+Table users {
+  user_id text [pk]
+  organization_id text [ref: > organizations.organization_id]
+  email text
+  full_name text
+  title text
+  department text
+  location text
+  role text
+  manager_user_id text [ref: > users.user_id]
+  hire_date text
+  created_at text
+  deactivated_at text
+}
+
+Table team_memberships {
+  team_id text [ref: > teams.team_id]
+  user_id text [ref: > users.user_id]
+  is_team_admin int
+  joined_at text
+  left_at text
+
+  indexes {
+    (team_id, user_id) [pk]
+  }
+}
+
+Table projects {
+  project_id text [pk]
+  organization_id text [ref: > organizations.organization_id]
+  owner_team_id text [ref: > teams.team_id]
+  name text
+  project_type text
+  privacy text
+  status text
+  start_date text
+  due_date text
+  created_at text
+  archived_at text
+  description text
+}
+
+Table sections {
+  section_id text [pk]
+  project_id text [ref: > projects.project_id]
+  name text
+  position int
+  created_at text
+}
+
+Table tasks {
+  task_id text [pk]
+  project_id text [ref: > projects.project_id]
+  section_id text [ref: > sections.section_id]
+  name text
+  description text
+  creator_user_id text [ref: > users.user_id]
+  assignee_user_id text [ref: > users.user_id]
+  created_at text
+  updated_at text
+  start_date text
+  due_date text
+  completed int
+  completed_at text
+}
+
+Table subtasks {
+  subtask_id text [pk]
+  parent_task_id text [ref: > tasks.task_id]
+  name text
+  description text
+  creator_user_id text [ref: > users.user_id]
+  assignee_user_id text [ref: > users.user_id]
+  created_at text
+  updated_at text
+  due_date text
+  completed int
+  completed_at text
+}
+
+Table comments {
+  comment_id text [pk]
+  author_user_id text [ref: > users.user_id]
+  task_id text [ref: > tasks.task_id]
+  subtask_id text [ref: > subtasks.subtask_id]
+  body text
+  created_at text
+}
+
+Table tags {
+  tag_id text [pk]
+  organization_id text [ref: > organizations.organization_id]
+  name text
+  color text
+  created_at text
+}
+
+Table task_tags {
+  task_id text [ref: > tasks.task_id]
+  subtask_id text [ref: > subtasks.subtask_id]
+  tag_id text [ref: > tags.tag_id]
+  added_at text
+
+  indexes {
+    (tag_id, task_id, subtask_id) [pk]
+  }
+}
+
+Table custom_field_definitions {
+  custom_field_id text [pk]
+  organization_id text [ref: > organizations.organization_id]
+  name text
+  field_type text
+  enum_options_json text
+  created_at text
+}
+
+Table project_custom_fields {
+  project_id text [ref: > projects.project_id]
+  custom_field_id text [ref: > custom_field_definitions.custom_field_id]
+  is_required int
+  created_at text
+
+  indexes {
+    (project_id, custom_field_id) [pk]
+  }
+}
+
+Table custom_field_values {
+  custom_field_value_id text [pk]
+  custom_field_id text [ref: > custom_field_definitions.custom_field_id]
+  task_id text [ref: > tasks.task_id]
+  subtask_id text [ref: > subtasks.subtask_id]
+  value_text text
+  value_number real
+  value_enum text
+  created_at text
+}
+
+Table attachments {
+  attachment_id text [pk]
+  task_id text [ref: > tasks.task_id]
+  subtask_id text [ref: > subtasks.subtask_id]
+  uploader_user_id text [ref: > users.user_id]
+  file_name text
+  file_type text
+  file_size_bytes int
+  created_at text
+  url text
+}
