@@ -64,7 +64,7 @@ copy .env.example .env
 python src/main.py
 ```
 
-4) Validate quality (recommended)
+4) Validate quality
 
 ```bash
 python src/sanity_check.py
